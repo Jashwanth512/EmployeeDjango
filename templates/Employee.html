@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comforter&family=Macondo&family=Neonderthaw&family=Poppins:wght@200;300;400;500&family=Ubuntu:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        body{
+            background-color: #a55c1b;
+background-image: linear-gradient(315deg, #a55c1b 0%, #000000 74%);
+            font-family: 'poppins';
+            height: 95vh;
+        }
+        form
+        {
+            padding: 10px;
+            color: white;
+            font-size: 20px;
+        }
+        form>*
+        {
+            margin-top: 25px;
+        }
+        form input,button
+        {
+            font-size: 20px;
+        }
+        button
+        {
+            background-color: #000000;
+background-image: linear-gradient(315deg, #000000 0%, #b82e1f 74%);
+            cursor: pointer;
+            color: white;
+            padding:5px 9px;
+            border-radius: 5px;
+            font-family: 'Macondo';
+        }
+        #delete
+        {
+            background-color: #000000;
+background-image: linear-gradient(315deg, #000000 0%, #b82e1f 74%);
+            padding: 2px 9px;
+            border-radius: 3px;
+            color: white;
+            text-decoration: none;
+            font-family: 'Macondo';
+        }
+    </style>
+</head>
+<body>
+    {% with e=employee %}
+    <form action="{% url 'loginPage:updateEmployee' e.id %}" method="POST">
+        {%csrf_token%}
+        <div>
+            <label for="empID">Employee ID: </label>
+        <br>
+        <input type="text" name='empID' id='empID' value="{{e.id}}" disabled>
+        </div>
+        
+        <div>
+            <label for="empName">Employee Name:</label>
+        <br>
+        <input type="text" name="empName" id="empName" value="{{e.name}}">
+        </div>
+        
+        <div>
+            <label for="empnumber">Employee Number:</label>
+            <br>
+            <input type="text" name="empNum" id="empNum" value="{{e.phonenumber}}">
+        </div>
+    
+        <div>
+            <label for="empemail">Employee Mail:</label>
+        <br>
+        <input type="Email" name="empEmail" id="empEmail" value="{{e.email}}">
+        </div>
+        <button type="submit">
+            Save Changes
+        </button>
+
+        <a href="{%url 'loginPage:deleteUser' e.id %}" id='delete'>Delete User</a>
+    </form>
+{%endwith%}
+</body>
+</html>
